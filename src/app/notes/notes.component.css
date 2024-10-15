@@ -1,0 +1,142 @@
+/* Custom Styles */
+
+/* General Body Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f9fc;
+    /* Light gray background for a cleaner look */
+}
+
+/* Header Styles */
+header {
+    background-color: #007bff;
+    /* Header background color */
+    color: white;
+    /* Text color */
+    padding: 20px 0;
+    /* Top and bottom padding */
+    border-radius: 10px;
+    /* Rounded corners for header */
+    margin-bottom: 30px;
+    /* Space below the header */
+}
+
+/* Card Styles */
+.card {
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Soft shadow for modern look */
+}
+
+/* Card Header Styles */
+.card-header {
+    background-color: #e9ecef;
+    /* Light background for header */
+    border-radius: 10px 10px 0 0;
+    /* Rounded top corners */
+    font-weight: bold;
+    /* Bold text */
+}
+
+/* List Group Item Styles */
+.list-group-item {
+    border: none;
+    /* Remove border from list items */
+    padding: 15px;
+    /* Increase padding for comfort */
+    transition: background-color 0.3s, transform 0.3s;
+    /* Smooth transition for hover */
+}
+
+/* Note Content Styles */
+.note-content {
+    font-size: 1.1rem;
+    /* Larger font size for note content */
+}
+
+/* Hover effect on note items */
+.list-group-item:hover {
+    background-color: #f1f3f5;
+    /* Light background on hover */
+    transform: translateY(-2px);
+    /* Lift effect on hover */
+}
+
+/* Button Styles */
+.btn-danger {
+    background-color: #dc3545;
+    /* Red button */
+    border: none;
+    /* Remove border */
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    /* Darker red on hover */
+}
+
+.btn-success {
+    background-color: #28a745;
+    /* Green button */
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    /* Darker green on hover */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 15px;
+        /* Less space on smaller screens */
+    }
+
+    /* Form Styles */
+    .form-group {
+        margin-bottom: 1rem;
+        /* Adjust space between form fields */
+    }
+
+    /* Note Button */
+    .btn-block {
+        width: 100%;
+        /* Full width button */
+    }
+}
+
+/* Add spacing for larger screens */
+@media (min-width: 769px) {
+    .form-group {
+        margin-bottom: 1.5rem;
+        /* Increase bottom margin for form fields */
+    }
+
+    input,
+    textarea {
+        margin-top: 0.5rem;
+        /* Space above the input fields */
+        margin-bottom: 0.5rem;
+        /* Space below the input fields */
+    }
+
+    /* Adjust button margin */
+    .btn-success {
+        margin-top: 1rem;
+        /* Space above the button */
+    }
+}
+
+@media (max-width: 576px) {
+    .note-form {
+        margin-top: 10px;
+        /* Adjust top margin on small screens */
+    }
+}
+
+/* Font Awesome Icon Styles */
+.fas {
+    font-size: 1rem;
+    /* Set icon size */
+}
