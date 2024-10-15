@@ -1,33 +1,68 @@
 <div class="container mt-4">
-    <!-- App Header -->
     <header class="text-center mb-4">
         <h1 class="display-4 font-weight-bold">Notes App</h1>
-        <p class="lead">Keep track of your thoughts and ideas.</p>
     </header>
 
     <div class="row">
-        <!-- Notes History -->
+        <!-- Notes History (Left Side) -->
         <div class="col-md-4 col-12 mb-3">
             <div class="card notes-card">
                 <div class="card-header text-center">
                     <h2>My Notes</h2>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li 
-                        class="list-group-item d-flex justify-content-between align-items-center" 
-                        *ngFor="let note of notes"
-                    >
-                        <div class="note-content flex-grow-1">
+                    <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let note of notes">
+                        <div *ngIf="editNoteId !== note._id" class="note-content flex-grow-1">
                             <strong>{{ note.title }}</strong>
                             <p class="mb-0">{{ note.content }}</p>
-                            <small class="text-muted">{{ note.createdAt | date:'short' }}</small> <!-- Displaying the timestamp -->
+                            <small class="text-muted">{{ note.createdAt | date:'short' }}</small>
                         </div>
-                        <button 
-                            class="btn btn-danger btn-sm" 
-                            (click)="note._id && deleteNote(note._id)"
-                        >
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
+
+                        <div *ngIf="editNoteId === note._id" class="edit-note flex-grow-1">
+                            <input 
+                                [(ngModel)]="editedNote.title" 
+                                class="form-control mb-2" 
+                                placeholder="Edit title" 
+                                required
+                            />
+                            <textarea 
+                                [(ngModel)]="editedNote.content" 
+                                class="form-control mb-2" 
+                                rows="2"
+                                placeholder="Edit content" 
+                                required
+                            ></textarea>
+                        </div>
+
+                        <div class="action-buttons d-flex flex-column flex-md-row gap-2 mt-2 mt-md-0">
+                            <button 
+                                class="btn btn-warning btn-sm" 
+                                *ngIf="editNoteId !== note._id" 
+                                (click)="startEdit(note)"
+                            >
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button 
+                                class="btn btn-success btn-sm" 
+                                *ngIf="editNoteId === note._id" 
+                                (click)="saveEdit()"
+                            >
+                                <i class="fas fa-save"></i>
+                            </button>
+                            <button 
+                                class="btn btn-secondary btn-sm" 
+                                *ngIf="editNoteId === note._id" 
+                                (click)="cancelEdit()"
+                            >
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <button 
+                                class="btn btn-danger btn-sm" 
+                                (click)="note._id && deleteNote(note._id)"
+                            >
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
                     </li>
                 </ul>
                 <div class="card-footer text-muted text-center">
@@ -36,41 +71,30 @@
             </div>
         </div>
 
-        <!-- Add New Note Form -->
-        <div class="col-md-8 col-12 mb-3">
+        <!-- Add New Note (Right Side) -->
+        <div class="col-md-8 col-12">
             <div class="card add-note-card">
-                <div class="card-header text-center">
+                <div class="card-header">
                     <h3>Add a New Note</h3>
                 </div>
                 <div class="card-body">
-                    <form class="note-form">
-                        <div class="form-group">
-                            <input 
-                                type="text" 
-                                class="form-control" 
-                                [(ngModel)]="newNote.title"
-                                [ngModelOptions]="{standalone: true}" 
-                                placeholder="Enter title" 
-                                required 
-                            />
-                        </div>
-                        <div class="form-group">
-                            <textarea 
-                                class="form-control" 
-                                [(ngModel)]="newNote.content" 
-                                [ngModelOptions]="{standalone: true}"
-                                placeholder="Enter content" 
-                                rows="4" 
-                                required 
-                            ></textarea>
-                        </div>
-                        <button 
-                            class="btn btn-success btn-block" 
-                            (click)="addNote()"
-                        >
-                            Add Note
-                        </button>
-                    </form>
+                    <input 
+                        [(ngModel)]="newNote.title" 
+                        class="form-control mb-3" 
+                        placeholder="Note Title"
+                    />
+                    <textarea 
+                        [(ngModel)]="newNote.content" 
+                        class="form-control mb-3" 
+                        rows="5" 
+                        placeholder="Note Content"
+                    ></textarea>
+                    <button 
+                        class="btn btn-primary btn-block" 
+                        (click)="addNote()"
+                    >
+                        <i class="fas fa-plus"></i> Add Note
+                    </button>
                 </div>
             </div>
         </div>

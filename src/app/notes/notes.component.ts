@@ -16,6 +16,8 @@ interface Note {
 export class NotesComponent implements OnInit {
   notes: Note[] = [];
   newNote: Note = { title: '', content: '' };
+  editNoteId: string | null = null; 
+  editedNote = { title: '', content: '' };
 
   constructor(private noteService: NoteService) {}
 
@@ -41,6 +43,37 @@ export class NotesComponent implements OnInit {
       });
     }
   }
+
+  startEdit(note: any) {
+    this.editNoteId = note._id; // Set the note's ID for editing
+    this.editedNote = { title: note.title, content: note.content }; // Pre-fill the form with the note's data
+}
+
+// Save the edited note
+saveEdit() {
+    if (this.editNoteId) {
+        this.noteService.editNote(this.editNoteId, this.editedNote)
+            .subscribe(updatedNote => {
+                // Update the note in the array
+                const index = this.notes.findIndex(note => note._id === this.editNoteId);
+                this.notes[index] = updatedNote;
+
+                this.cancelEdit(); // Reset the form after saving
+            }, error => {
+                console.error('Error updating note', error);
+            });
+    }
+}
+  
+cancelEdit() {
+    this.editNoteId = null; // Reset the edit mode
+    this.editedNote = { title: '', content: '' }; // Clear the edited note data
+}
+
+resetForm() {
+    this.editNoteId = null; // Clear the editing ID
+    this.newNote = { title: '', content: '' }; // Reset the new note form
+}
 
   deleteNote(id: string) {
     this.noteService.deleteNote(id).subscribe(() => {

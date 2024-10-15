@@ -1,142 +1,203 @@
-/* Custom Styles */
-
-/* General Body Styles */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f7f9fc;
-    /* Light gray background for a cleaner look */
+/* General Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
 }
 
-/* Header Styles */
+/* Header */
 header {
     background-color: #007bff;
-    /* Header background color */
-    color: white;
-    /* Text color */
-    padding: 20px 0;
-    /* Top and bottom padding */
+    color: #fff;
+    padding: 20px;
     border-radius: 10px;
-    /* Rounded corners for header */
-    margin-bottom: 30px;
-    /* Space below the header */
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Card Styles */
-.card {
-    border-radius: 10px;
-    /* Rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    /* Soft shadow for modern look */
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 600;
 }
 
-/* Card Header Styles */
-.card-header {
-    background-color: #e9ecef;
-    /* Light background for header */
-    border-radius: 10px 10px 0 0;
-    /* Rounded top corners */
+/* Notes History Card */
+.notes-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-height: 400px;
+    /* Adjust as necessary for better mobile experience */
+    overflow-y: auto;
+    /* Make it scrollable */
+}
+
+.notes-card .card-header {
+    background-color: #f8f9fa;
     font-weight: bold;
-    /* Bold text */
+    text-align: center;
+    padding: 10px 15px;
+    border-radius: 10px 10px 0 0;
 }
 
-/* List Group Item Styles */
-.list-group-item {
+.notes-card ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.notes-card .list-group-item {
     border: none;
-    /* Remove border from list items */
+    border-bottom: 1px solid #f1f1f1;
     padding: 15px;
-    /* Increase padding for comfort */
-    transition: background-color 0.3s, transform 0.3s;
-    /* Smooth transition for hover */
 }
 
-/* Note Content Styles */
-.note-content {
-    font-size: 1.1rem;
-    /* Larger font size for note content */
+.notes-card .note-content strong {
+    font-size: 1.2rem;
 }
 
-/* Hover effect on note items */
-.list-group-item:hover {
-    background-color: #f1f3f5;
-    /* Light background on hover */
-    transform: translateY(-2px);
-    /* Lift effect on hover */
+.notes-card .note-content p {
+    margin: 5px 0;
+    font-size: 0.95rem;
 }
 
-/* Button Styles */
-.btn-danger {
-    background-color: #dc3545;
-    /* Red button */
-    border: none;
-    /* Remove border */
+.notes-card .note-content small {
+    color: #6c757d;
 }
 
-.btn-danger:hover {
-    background-color: #c82333;
-    /* Darker red on hover */
+/* Add New Note Card */
+.add-note-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.btn-success {
-    background-color: #28a745;
-    /* Green button */
+.add-note-card .card-header {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 10px 10px 0 0;
 }
 
-.btn-success:hover {
-    background-color: #218838;
-    /* Darker green on hover */
+.add-note-card .card-body {
+    padding: 15px;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .card {
-        margin-bottom: 15px;
-        /* Less space on smaller screens */
-    }
-
-    /* Form Styles */
-    .form-group {
-        margin-bottom: 1rem;
-        /* Adjust space between form fields */
-    }
-
-    /* Note Button */
-    .btn-block {
-        width: 100%;
-        /* Full width button */
-    }
-}
-
-/* Add spacing for larger screens */
-@media (min-width: 769px) {
-    .form-group {
-        margin-bottom: 1.5rem;
-        /* Increase bottom margin for form fields */
-    }
-
-    input,
-    textarea {
-        margin-top: 0.5rem;
-        /* Space above the input fields */
-        margin-bottom: 0.5rem;
-        /* Space below the input fields */
-    }
-
-    /* Adjust button margin */
-    .btn-success {
-        margin-top: 1rem;
-        /* Space above the button */
-    }
-}
-
-@media (max-width: 576px) {
-    .note-form {
-        margin-top: 10px;
-        /* Adjust top margin on small screens */
-    }
-}
-
-/* Font Awesome Icon Styles */
-.fas {
+.add-note-card input,
+.add-note-card textarea {
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 10px;
     font-size: 1rem;
-    /* Set icon size */
+    width: 100%;
+}
+
+.add-note-card textarea {
+    resize: none;
+}
+
+/* Buttons */
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.btn-sm {
+    font-size: 0.875rem;
+}
+
+/* Icons */
+.btn i {
+    margin-right: 5px;
+}
+
+/* Edit & Action Buttons */
+.row .col-4,
+.row .col-12 {
+    padding: 5px;
+}
+
+.row .col-12 {
+    margin-top: 10px;
+}
+
+/* Button Spacing */
+.row .col-4 button {
+    width: 100%;
+}
+
+.row .col-12 button {
+    width: 100%;
+}
+
+@media (max-width: 767px) {
+
+    .row .col-4,
+    .row .col-12 {
+        padding: 3px;
+    }
+
+    .row .col-12 {
+        margin-top: 5px;
+    }
+}
+
+/* Responsive Fix for Input and Textarea */
+.add-note-card input,
+.add-note-card textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    .notes-card {
+        max-height: 100%;
+    }
+}
+
+/* Improved Form Focus States */
+input:focus,
+textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Spacing for Large Screens */
+@media (min-width: 992px) {
+
+    .add-note-card input,
+    .add-note-card textarea {
+        margin-bottom: 1rem;
+    }
+
+    .notes-card .list-group-item {
+        padding: 20px;
+    }
+}
+
+/* Adjust Scrollbar */
+.notes-card::-webkit-scrollbar {
+    width: 8px;
+}
+
+.notes-card::-webkit-scrollbar-thumb {
+    background-color: #007bff;
+    border-radius: 10px;
+}
+
+/* Make Body Scrollable */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    /* Ensure no margin that could cause scrolling issues */
+    overflow-y: auto;
+    /* Allow vertical scrolling */
+}
+
+/* Full Height for Container */
+.container {
+    min-height: 100vh;
+    /* Ensure the container takes full viewport height */
 }
