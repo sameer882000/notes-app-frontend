@@ -1,5 +1,7 @@
+import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NoteService } from '../services/note.service';
+import { Router } from '@angular/router';
 
 interface Note {
   _id?: string;
@@ -18,8 +20,8 @@ export class NotesComponent implements OnInit {
   newNote: Note = { title: '', content: '' };
   editNoteId: string | null = null; 
   editedNote = { title: '', content: '' };
-
-  constructor(private noteService: NoteService) {}
+  
+  constructor(private noteService: NoteService, private authService : AuthService, private router : Router) {}
 
   ngOnInit(): void {
     this.fetchNotes();
@@ -79,5 +81,10 @@ resetForm() {
     this.noteService.deleteNote(id).subscribe(() => {
       this.notes = this.notes.filter((note) => note._id !== id);
     });
+  }
+
+   logout() {
+    this.authService.logout(); // Call your logout method in AuthService
+    this.router.navigate(['/login']); // Redirect to the login page
   }
 }

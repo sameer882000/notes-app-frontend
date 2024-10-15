@@ -1,1 +1,48 @@
 /* You can add global styles to this file, and also import other style files */
+/* General Container */
+.container {
+    max-width: 600px;
+    /* Limit the width for larger screens */
+    margin: auto;
+    /* Center the container */
+}
+
+/* Header Styles */
+header {
+    margin-bottom: 30px;
+}
+
+/* Card Styles */
+.card {
+    border-radius: 15px;
+    /* Rounded corners */
+}
+
+/* Button Styles */
+.btn-primary {
+    border-radius: 25px;
+    /* Rounded button corners */
+    padding: 10px;
+    /* Add padding to buttons */
+}
+
+/* Text Links */
+a {
+    color: #007bff;
+    /* Bootstrap primary color */
+    text-decoration: none;
+    /* Remove underline */
+}
+
+a:hover {
+    text-decoration: underline;
+    /* Underline on hover */
+}
+
+/* Responsive Fixes */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        /* Add padding for mobile devices */
+    }
+}
