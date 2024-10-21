@@ -13,6 +13,7 @@ header {
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
 }
 
 header h1 {
@@ -27,9 +28,7 @@ header h1 {
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     max-height: 400px;
-    /* Adjust as necessary for better mobile experience */
     overflow-y: auto;
-    /* Make it scrollable */
 }
 
 .notes-card .card-header {
@@ -95,88 +94,67 @@ header h1 {
     resize: none;
 }
 
-/* Buttons */
-.btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Logout Button */
+.logout-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
     font-size: 1rem;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #dc3545;
+    color: white;
+    transition: background-color 0.3s ease;
 }
 
-.btn-sm {
-    font-size: 0.875rem;
+.logout-btn:hover {
+    background-color: #c82333;
 }
 
 /* Icons */
+.logout-btn i {
+    margin-right: 5px;
+}
+
 .btn i {
     margin-right: 5px;
 }
 
-/* Edit & Action Buttons */
-.row .col-4,
-.row .col-12 {
-    padding: 5px;
-}
-
-.row .col-12 {
-    margin-top: 10px;
-}
-
-/* Button Spacing */
-.row .col-4 button {
-    width: 100%;
-}
-
-.row .col-12 button {
-    width: 100%;
-}
-
-@media (max-width: 767px) {
-
-    .row .col-4,
-    .row .col-12 {
-        padding: 3px;
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+    header {
+        padding: 15px;
     }
 
-    .row .col-12 {
-        margin-top: 5px;
+    header h1 {
+        font-size: 1.75rem;
     }
-}
 
-/* Responsive Fix for Input and Textarea */
-.add-note-card input,
-.add-note-card textarea {
-    width: 100%;
-    box-sizing: border-box;
-}
+    .logout-btn {
+        top: 5px;
+        right: 10px;
+        font-size: 0.875rem;
+        padding: 8px 10px;
+    }
 
-@media (min-width: 768px) {
     .notes-card {
-        max-height: 100%;
+        max-height: 300px;
+    }
+
+    .add-note-card input,
+    .add-note-card textarea {
+        font-size: 0.9rem;
     }
 }
 
-/* Improved Form Focus States */
+/* Input Focus */
 input:focus,
 textarea:focus {
     border-color: #007bff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Spacing for Large Screens */
-@media (min-width: 992px) {
-
-    .add-note-card input,
-    .add-note-card textarea {
-        margin-bottom: 1rem;
-    }
-
-    .notes-card .list-group-item {
-        padding: 20px;
-    }
-}
-
-/* Adjust Scrollbar */
+/* Custom Scrollbar */
 .notes-card::-webkit-scrollbar {
     width: 8px;
 }
@@ -184,60 +162,4 @@ textarea:focus {
 .notes-card::-webkit-scrollbar-thumb {
     background-color: #007bff;
     border-radius: 10px;
-}
-
-/* Make Body Scrollable */
-html,
-body {
-    height: 100%;
-    margin: 0;
-    /* Ensure no margin that could cause scrolling issues */
-    overflow-y: auto;
-    /* Allow vertical scrolling */
-}
-
-/* Full Height for Container */
-.container {
-    min-height: 100vh;
-    /* Ensure the container takes full viewport height */
-}
-
-/* Logout Button */
-.btn-danger {
-    margin-top: 10px;
-    /* Add some space above the button */
-    /* margin-left: 10px; */
-    /* Add space between the title and button */
-}
-
-.logout-btn {
-    position: absolute;
-    top: 30px;
-    /* Adjust the value for spacing from the top */
-    right: 20px;
-    /* Adjust the value for spacing from the right */
-    z-index: 1000;
-    /* Ensure it appears above other elements */
-    font-size: 1rem;
-    /* Font size */
-    padding: 10px 15px;
-    /* Padding for a better click area */
-    border-radius: 5px;
-    /* Rounded corners */
-}
-
-/* Optional: Hover Effect */
-.logout-btn:hover {
-    background-color: #c82333;
-    /* Darker red on hover */
-    color: white;
-    /* Text color change on hover */
-    transition: background-color 0.3s;
-    /* Smooth transition */
-}
-
-/* Button Icons */
-.logout-btn i {
-    margin-right: 5px;
-    /* Space between icon and text */
 }

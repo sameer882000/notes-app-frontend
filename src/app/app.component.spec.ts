@@ -1,12 +1,14 @@
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('AppComponent', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    imports: [RouterTestingModule],
-    declarations: [AppComponent]
-  }));
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ AppComponent ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]  // Avoids issues with other components
+    }).compileComponents();
+  });
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -22,8 +24,8 @@ describe('AppComponent', () => {
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
+    fixture.detectChanges(); // Ensures that the template is updated
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('notes-app app is running!');
+    expect(compiled.querySelector('h1')?.textContent).toContain('notes-app app is running!');
   });
 });

@@ -1,13 +1,10 @@
 <div class="container mt-4">
-   <!-- Logout Button -->
-
-
-    <header class="text-center mb-4">
+    <!-- Logout Button -->
+    <header class="text-center mb-4 position-relative">
         <h1 class="display-4 font-weight-bold">Notes App</h1>
         <button class="btn btn-danger logout-btn" (click)="logout()">
-    <i class="fas fa-sign-out-alt"></i>
-</button>
-         <!-- Logout Button -->
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
     </header>
 
     <div class="row">
@@ -24,49 +21,21 @@
                             <p class="mb-0">{{ note.content }}</p>
                             <small class="text-muted">{{ note.createdAt | date:'short' }}</small>
                         </div>
-
-                        <div *ngIf="editNoteId === note._id" class="edit-note flex-grow-1">
-                            <input 
-                                [(ngModel)]="editedNote.title" 
-                                class="form-control mb-2" 
-                                placeholder="Edit title" 
-                                required
-                            />
-                            <textarea 
-                                [(ngModel)]="editedNote.content" 
-                                class="form-control mb-2" 
-                                rows="2"
-                                placeholder="Edit content" 
-                                required
-                            ></textarea>
+                        <div *ngIf="editNoteId === note._id" class="edit-note flex-grow-1 me-2">
+                            <input [(ngModel)]="editedNote.title" class="form-control mb-2" placeholder="Edit title" required />
+                            <textarea [(ngModel)]="editedNote.content" class="form-control mb-2" rows="2" placeholder="Edit content" required></textarea>
                         </div>
-
-                        <div class="action-buttons d-flex flex-column flex-md-row gap-2 mt-2 mt-md-0">
-                            <button 
-                                class="btn btn-warning btn-sm" 
-                                *ngIf="editNoteId !== note._id" 
-                                (click)="startEdit(note)"
-                            >
+                        <div class="action-buttons d-flex flex-column flex-md-row gap-2">
+                            <button class="btn btn-warning btn-sm" *ngIf="editNoteId !== note._id" (click)="startEdit(note)">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button 
-                                class="btn btn-success btn-sm" 
-                                *ngIf="editNoteId === note._id" 
-                                (click)="saveEdit()"
-                            >
+                            <button class="btn btn-success btn-sm" *ngIf="editNoteId === note._id" (click)="saveEdit()">
                                 <i class="fas fa-save"></i>
                             </button>
-                            <button 
-                                class="btn btn-secondary btn-sm" 
-                                *ngIf="editNoteId === note._id" 
-                                (click)="cancelEdit()"
-                            >
+                            <button class="btn btn-secondary btn-sm" *ngIf="editNoteId === note._id" (click)="cancelEdit()">
                                 <i class="fas fa-times"></i>
                             </button>
-                            <button 
-                                class="btn btn-danger btn-sm" 
-                                (click)="note._id && deleteNote(note._id)"
-                            >
+                            <button class="btn btn-danger btn-sm" (click)="note._id && deleteNote(note._id)">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
@@ -85,21 +54,9 @@
                     <h3>Add a New Note</h3>
                 </div>
                 <div class="card-body">
-                    <input 
-                        [(ngModel)]="newNote.title" 
-                        class="form-control mb-3" 
-                        placeholder="Note Title"
-                    />
-                    <textarea 
-                        [(ngModel)]="newNote.content" 
-                        class="form-control mb-3" 
-                        rows="5" 
-                        placeholder="Note Content"
-                    ></textarea>
-                    <button 
-                        class="btn btn-primary btn-block" 
-                        (click)="addNote()"
-                    >
+                    <input [(ngModel)]="newNote.title" class="form-control mb-3" placeholder="Note Title" />
+                    <textarea [(ngModel)]="newNote.content" class="form-control mb-3" rows="5" placeholder="Note Content"></textarea>
+                    <button class="btn btn-primary btn-block" (click)="addNote()">
                         <i class="fas fa-plus"></i> Add Note
                     </button>
                 </div>

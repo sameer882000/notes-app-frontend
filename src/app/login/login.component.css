@@ -1,48 +1,56 @@
-/* General Styles */
+/* General Container */
 .container {
     background-color: #f8f9fa;
-    /* Light background for contrast */
     min-height: 100vh;
-    /* Full height to cover the viewport */
 }
 
-/* Card Styles */
+/* Card */
 .card {
-    border-radius: 10px;
+    border-radius: 15px;
     overflow: hidden;
 }
 
 /* Card Body */
 .card-body {
     background: #ffffff;
-    /* White background for card */
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
-/* Heading */
-.card-body h3 {
-    font-weight: 600;
+/* Heading Styles */
+.display-4 {
+    font-size: 2.5rem;
+    font-weight: bold;
     color: #333;
-    /* Darker text for better visibility */
 }
 
 /* Button Styles */
 .btn-primary {
     background-color: #007bff;
-    /* Bootstrap primary color */
     border-color: #007bff;
 }
 
 .btn-primary:hover {
     background-color: #0056b3;
-    /* Darker shade on hover */
     border-color: #0056b3;
 }
 
 /* Responsive Adjustments */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 2rem;
+    }
+
+    .display-4 {
+        font-size: 2rem;
+    }
+}
+
 @media (max-width: 576px) {
-    .card {
-        padding: 15px;
-        /* Additional padding on smaller screens */
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    .display-4 {
+        font-size: 1.75rem;
     }
 }

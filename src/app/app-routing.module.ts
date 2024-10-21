@@ -1,16 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NotesComponent } from './notes/notes.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+
+
+
 import { AuthGuard } from './auth.guard';
 
+// app-routing.module.ts
 const routes: Routes = [
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: 'notes', component: NotesComponent, canActivate: [AuthGuard] },
-    { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirect to login on app load
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./login/login.module').then(m => m.LoginModule),
+  },
+  {
+    path: 'register',
+    loadChildren: () =>
+      import('./register/register.module').then(m => m.RegisterModule),
+  },
+  {
+    path: 'notes',
+    loadChildren: () =>
+      import('./notes/notes.module').then(m => m.NotesModule), // Ensure no `null` is returned
+  },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
+
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
