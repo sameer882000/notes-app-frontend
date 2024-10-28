@@ -12,12 +12,26 @@ export class AuthService {
     constructor(private http: HttpClient, private router: Router) { }
 
     register(username: string, password: string) {
-        return this.http.post(`${this.apiUrl}/register`, { username, password });
+        return this.http.post(`${this.apiUrl}/register`, { username, password })
+        .subscribe((res: any) => {
+        if(res.msg === 'User already exists') {
+            alert('User already exists');
+        }
+        else if(res.errors) {
+            res.errors.map((error: any) => {
+                alert(error.msg);
+            });
+        }
+        });
     }
 
     login(username: string, password: string) {
         return this.http.post<{ token: string }>(`${this.apiUrl}/login`, { username, password })
-            .subscribe(res => {
+            .subscribe((res : any) => {
+                if(res.msg === 'Invalid credentials') {
+                    alert('Invalid credentials');
+                    return;
+                }
                 localStorage.setItem('token', res.token);
                 this.router.navigate(['/notes']); // Redirect to notes page
             });
