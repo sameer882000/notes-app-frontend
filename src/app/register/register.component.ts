@@ -19,9 +19,18 @@ export class RegisterComponent {
         // Redirect to login or notes page after registration
         this.router.navigate(['/login']);
       },
-      error: error => {
-        alert(error.error.msg);
+      error: (error) => {
+        console.log(error);
+  
+        // Check if there's an array of errors and alert the first error message
+        if (error.error.errors && error.error.errors.length > 0) {
+          alert(error.error.errors[0].msg);
+        } else {
+          // Default fallback message if no specific error message is found
+          alert(error.error.msg);
+        }
       }
     });
   }
+  
 }

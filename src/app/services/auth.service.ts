@@ -17,15 +17,23 @@ export class AuthService {
 
     login(username: string, password: string) {
         return this.http.post<{ token: string }>(`${this.apiUrl}/login`, { username, password })
-            .subscribe((res : any) => {
-                if(res.msg === 'Invalid credentials') {
-                    alert('Invalid credentials');
-                    return;
+            .subscribe({
+                next: (res: any) => {
+                    localStorage.setItem('token', res.token);
+                    this.router.navigate(['/notes']); // Redirect to notes page
+                },
+                error: (error) => {
+                    // Check if there's an error message and alert it
+                    if (error.error?.msg) {
+                        alert(error.error.msg);
+                    } else {
+                        // Fallback message if error message is unavailable
+                        alert('An error occurred. Please try again.');
+                    }
                 }
-                localStorage.setItem('token', res.token);
-                this.router.navigate(['/notes']); // Redirect to notes page
             });
     }
+    
 
     logout() {
         localStorage.removeItem('token');
