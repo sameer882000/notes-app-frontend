@@ -17,7 +17,7 @@ export class RegisterComponent {
     this.authService.register(this.username, this.password).subscribe({
       next: () => {
         // Redirect to login or notes page after registration
-        this.router.navigate(['/login']);
+       this.authService.login(this.username, this.password);
       },
       error: (error) => {
         console.log(error);
