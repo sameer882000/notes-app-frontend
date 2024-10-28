@@ -14,14 +14,14 @@ export class RegisterComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   onRegister() {
-    this.authService.register(this.username, this.password).subscribe(
-      () => {
+    this.authService.register(this.username, this.password).subscribe({
+      next: () => {
         // Redirect to login or notes page after registration
         this.router.navigate(['/login']);
       },
-      error => {
-        console.error('Registration failed:', error);
+      error: error => {
+        alert(error.error.msg);
       }
-    );
+    });
   }
 }
